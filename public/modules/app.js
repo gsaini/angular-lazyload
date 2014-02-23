@@ -1,8 +1,9 @@
-define(['angular', 'angularRoute'], function(angular, angularRoute){
+define(['angular', 'angularRoute', 'ocLazyLoad'], function(angular, angularRoute){
   'use strict';
 
   var app = angular.module('angularProjectApp', [
-    'ngRoute'
+    'ngRoute',
+    'oc.lazyLoad'
   ])
   .controller('AppCtrl', function () {
       
@@ -27,11 +28,24 @@ define(['angular', 'angularRoute'], function(angular, angularRoute){
         'Karma'
       ];
     })
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $ocLazyLoadProvider) {
+    
+    $ocLazyLoadProvider.config({
+      asyncLoader:require
+    });
+
     $routeProvider
       .when('/home', {
         templateUrl: 'modules/home/home.html',
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl',
+        resolve: {
+          load: ['$ocLazyLoad', function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name: 'TestModule',
+              files: ['modules/controller.js']
+            });
+          }]
+        }
       })
       .when('/about', {
         templateUrl: 'modules/about/about.html',
