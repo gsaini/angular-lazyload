@@ -1,7 +1,7 @@
 define(['angular'], function(angular){
 'use strict';
 
-angular.module('angularProjectApp')
+angular.module('contact', [])
   .controller('ContactCtrl', function ($scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',

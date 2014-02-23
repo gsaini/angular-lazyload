@@ -4,30 +4,9 @@ define(['angular', 'angularRoute', 'ocLazyLoad'], function(angular, angularRoute
   var app = angular.module('angularProjectApp', [
     'ngRoute',
     'oc.lazyLoad'
-  ])
-  .controller('AppCtrl', function () {
+  ]).controller('AppCtrl', function () {
       
   })
-  .controller('AboutCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  }).controller('ContactCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  })
-  .controller('HomeCtrl', function ($scope) {
-      $scope.awesomeThings = [
-        'HTML5 Boilerplate',
-        'AngularJS',
-        'Karma'
-      ];
-    })
   .config(function ($routeProvider, $ocLazyLoadProvider) {
     
     $ocLazyLoadProvider.config({
@@ -41,19 +20,35 @@ define(['angular', 'angularRoute', 'ocLazyLoad'], function(angular, angularRoute
         resolve: {
           load: ['$ocLazyLoad', function($ocLazyLoad) {
             return $ocLazyLoad.load({
-              name: 'TestModule',
-              files: ['modules/controller.js']
+              name: 'home',
+              files: ['modules/home/controller.js']
             });
           }]
         }
       })
       .when('/about', {
         templateUrl: 'modules/about/about.html',
-        controller: 'AboutCtrl'
+        controller: 'AboutCtrl',
+        resolve: {
+          load: ['$ocLazyLoad', function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name: 'about',
+              files: ['modules/about/controller.js']
+            });
+          }]
+        }
       })
       .when('/contact', {
         templateUrl: 'modules/contact/contact.html',
-        controller: 'ContactCtrl'
+        controller: 'ContactCtrl',
+        resolve: {
+          load: ['$ocLazyLoad', function($ocLazyLoad) {
+            return $ocLazyLoad.load({
+              name: 'contact',
+              files: ['modules/contact/controller.js']
+            });
+          }]
+        }
       })
       .otherwise({
         redirectTo: '/home'
