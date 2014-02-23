@@ -12,6 +12,7 @@ require.config({
     angularRoute:'../bower_components/angular-route/angular-route',
     ocLazyLoad:'../bower_components/ocLazyLoad/ocLazyLoad',
     home:'home/controller',
+    homeService:'home/service',
     about:'about/controller',
     contact:'contact/controller',
     appCtrl:'controller'
