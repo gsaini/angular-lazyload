@@ -1,13 +1,26 @@
-define(['angular'], function(angular){
-'use strict';
+define(['angular'], function(angular) {
+    'use strict';
 
-angular.module('contact', [])
-  .controller('ContactCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+    /**
+     * [contactController description]
+     * @param  {[type]} $scope [description]
+     * @return {[type]}        [description]
+     */
+    var contactController = function($scope, contactService) {
+        var self = this;
 
+        /**
+         * [pageLoad description]
+         * @return {[type]} [description]
+         */
+        self.pageLoad = function() {
+            contactService.getContacts().success(function(response) {
+                $scope.contacts = response.data;
+            });
+        };
+
+        self.pageLoad();
+    };
+
+    return ['$scope', 'ContactService', contactController];
 });

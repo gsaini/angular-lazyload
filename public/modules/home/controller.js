@@ -1,14 +1,29 @@
-define(['angular'], function(angular){
-'use strict';
+define([
+    'angular'
+], function(angular) {
+    'use strict';
 
-	var app = angular.module('home', [])
-	  .controller('HomeCtrl', ['$scope', function ($scope) {
-	    $scope.awesomeThings = [
-	      'HTML5 Boilerplate',
-	      'AngularJS',
-	      'Karma'
-	    ];
-	  }]);
+    /**
+     * [homeController description]
+     * @param  {[type]} $scope      [description]
+     * @param  {[type]} homeService [description]
+     * @return {[type]}             [description]
+     */
+    var homeController = function($scope, homeService) {
+        var self = this;
 
-	return app;
+        /**
+         * [pageLoad description]
+         * @return {[type]} [description]
+         */
+        self.pageLoad = function() {
+            homeService.getData().success(function(response) {
+                $scope.awesomeThings = response.data;
+            });
+        };
+
+        self.pageLoad();
+    };
+
+    return ['$scope', 'HomeService', homeController];
 });

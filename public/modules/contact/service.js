@@ -4,21 +4,21 @@ define([
     'use strict';
 
     /**
-     * [homeService description]
+     * [contactService description]
      * @param  {[type]} $http [description]
      * @return {[type]}       [description]
      */
-    var homeService = function($http) {
+    var contactService = function($http) {
         return {
             /**
-             * [getData description]
+             * [getContacts description]
              * @return {[type]} [description]
              */
-            getData: function() {
-                return $http.get('data/home.json');
+            getContacts: function() {
+                return $http.get('data/contacts.json');
             }
         };
     };
 
-    return ['$http', homeService];
+    return ['$http', contactService];
 });
