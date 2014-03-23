@@ -6,8 +6,10 @@ define(['angular'], function(angular) {
      * @param  {[type]} $scope [description]
      * @return {[type]}        [description]
      */
-    var contactController = function($scope, contactService) {
+    var contactController = function($scope, $rootScope, contactService) {
         var self = this;
+
+        $rootScope.pageTitle = 'contact';
 
         /**
          * [pageLoad description]
@@ -22,5 +24,5 @@ define(['angular'], function(angular) {
         self.pageLoad();
     };
 
-    return ['$scope', 'ContactService', contactController];
+    return ['$scope', '$rootScope', 'ContactService', contactController];
 });

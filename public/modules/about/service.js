@@ -20,5 +20,25 @@ define([
         };
     };
 
-    return ['$http', aboutService];
+    /**
+     * [otherService description]
+     * @param  {[type]} $http [description]
+     * @return {[type]}       [description]
+     */
+    var otherService = function($http) {
+        return {
+            /**
+             * [getStatus description]
+             * @return {[type]} [description]
+             */
+            getStatus: function() {
+                return 'active';
+            }
+        };
+    };
+
+    return {
+        aboutService: ['$http', aboutService],
+        otherService: ['$http', otherService]
+    };
 });

@@ -1,8 +1,11 @@
-define(['angular'], function(angular){
-	'use strict';
+define([
+    'angular'
+], function(angular) {
+    'use strict';
 
-	var app = angular.module('angularProjectApp', []).controller('AppCtrl', function () {
-	    
-	});
-	return app;
+    var appController = function($scope, $location) {
+
+    };
+
+    return ['$scope', '$location', appController];
 });

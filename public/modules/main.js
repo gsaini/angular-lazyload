@@ -1,16 +1,17 @@
-//On génère une config dédié à l'application pour pouvoir utiliser plusieurs APP sur une même page
 require.config({
     shim: {
         angular: {
             exports: "angular"
         },
         ocLazyLoad: ['angular'],
+        bootstrap: ['angular'],
         angularRoute: ['angular']
     },
     paths: {
         angular: '../bower_components/angular/angular',
         angularRoute: '../bower_components/angular-route/angular-route',
         ocLazyLoad: '../bower_components/ocLazyLoad/ocLazyLoad',
+        bootstrap: '../bower_components/angular-bootstrap/ui-bootstrap-tpls.min',
 
         homeController: 'home/controller',
         homeService: 'home/service',
@@ -21,10 +22,12 @@ require.config({
         contactController: 'contact/controller',
         contactService: 'contact/service',
 
-        appController: 'controller'
+        routeManager: 'route-manager',
+
+        bootstrapService: 'common/services/bootstrap'
     },
     deps: ['angular', 'app'],
     callback: function(angular, app) {
-        angular.bootstrap(document.getElementById('app'), ['angularProjectApp']);
+        angular.bootstrap(document.getElementById('app'), ['appModule']);
     }
 });
