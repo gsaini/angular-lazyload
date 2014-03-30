@@ -11,6 +11,9 @@
         contactController: 'contact/controller',
         contactService: 'contact/service'
     },
+	onBuildWrite: function(moduleName, path, contents) {
+        return contents.replace(/define\(\'\w+\/module\'\,/g, 'define(');
+    },
     shim: {
         angular: {
             exports: "angular"
