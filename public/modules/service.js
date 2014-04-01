@@ -10,10 +10,10 @@ define([
      */
     var lazyLoadService = function($ocLazyLoad) {
         var self = this;
-        self.load = function(moduleName, moduleUrl) {
+        self.load = function(moduleName, dependantFiles) {
             return $ocLazyLoad.load({
                 name: moduleName,
-                files: [moduleUrl]
+                files: dependantFiles
             });
         };
     };

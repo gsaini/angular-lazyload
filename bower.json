@@ -15,9 +15,10 @@
     "tests"
   ],
   "dependencies": {
-	  "angular": "~1.2.0",
-	  "angular-route": "~1.2.0",
+    "angular": "~1.2.0",
+    "angular-route": "~1.2.0",
     "requirejs": "~2.1.11",
-    "ocLazyLoad": "~0.0.3"
+    "ocLazyLoad": "~0.0.3",
+    "angular-ui-router": "~0.2.10"
   }
 }
