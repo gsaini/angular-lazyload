@@ -1,34 +1,22 @@
 require.config({
+    baseUrl: '../modules',
     shim: {
         angular: {
             exports: "angular"
         },
         ocLazyLoad: ['angular'],
-        bootstrap: ['angular'],
+        'ui-bootstrap': ['angular'],
         'angular-ui-route': ['angular']
     },
     paths: {
-        angular: '../bower_components/angular/angular',
-        angularRoute: '../bower_components/angular-route/angular-route',
-        'angular-ui-route': '../bower_components/angular-ui-router/release/angular-ui-router',
-        ocLazyLoad: '../bower_components/ocLazyLoad/ocLazyLoad',
-        bootstrap: '../bower_components/angular-bootstrap/ui-bootstrap-tpls.min',
-
-        homeController: 'home/controller',
-        homeService: 'home/service',
-
-        aboutController: 'about/controller',
-        aboutService: 'about/service',
-
-        contactController: 'contact/controller',
-        contactService: 'contact/service',
-
-        routeManager: 'route-manager',
-
-        bootstrapService: 'common/services/bootstrap'
+        angular: 'vendors/angular/angular',
+        angularRoute: 'vendors/angular-route/angular-route',
+        'angular-ui-route': 'vendors/angular-ui-router/release/angular-ui-router',
+        ocLazyLoad: 'vendors/ocLazyLoad/ocLazyLoad',
+        'ui-bootstrap': 'vendors/angular-bootstrap/ui-bootstrap-tpls.min',
     },
-    deps: ['angular', 'app'],
-    callback: function(angular, app) {
+    deps: ['app'],
+    callback: function(bootstrap) {
         angular.bootstrap(document.getElementById('app'), ['appModule']);
     }
 });

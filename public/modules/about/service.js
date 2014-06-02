@@ -1,6 +1,7 @@
 define([
-    'angular'
-], function(angular) {
+    'angular',
+    './module',
+], function(angular, aboutModule) {
     'use strict';
 
     /**
@@ -8,37 +9,17 @@ define([
      * @param  {[type]} $http [description]
      * @return {[type]}       [description]
      */
-    var aboutService = function($http) {
-        return {
+    aboutModule.service('AboutService', ['$http',
+        function($http) {
+            var self = this;
+
             /**
              * [getAwesomeThings description]
              * @return {[type]} [description]
              */
-            getAwesomeThings: function() {
+            self.getAwesomeThings = function() {
                 return $http.get('data/about.json');
-            }
-        };
-    };
-
-    /**
-     * [otherService description]
-     * @param  {[type]} $http [description]
-     * @return {[type]}       [description]
-     */
-    var otherService = function($http) {
-        return {
-            /**
-             * [getStatus description]
-             * @return {[type]} [description]
-             */
-            getStatus: function() {
-                return 'active';
-            }
-        };
-    };
-
-    return {
-        aboutService: ['$http', aboutService],
-        otherService: ['$http', otherService]
-    };
+            };
+        }
+    ]);
 });

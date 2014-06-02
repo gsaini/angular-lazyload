@@ -1,4 +1,8 @@
-define(['angular'], function(angular) {
+define([
+    'angular',
+    './module',
+    './service'
+], function(angular, contactModule, service) {
     'use strict';
 
     /**
@@ -6,23 +10,22 @@ define(['angular'], function(angular) {
      * @param  {[type]} $scope [description]
      * @return {[type]}        [description]
      */
-    var contactController = function($scope, $rootScope, contactService) {
-        var self = this;
+    contactModule.controller('ContactController', ['$scope', '$rootScope', 'ContactService',
+        function($scope, $rootScope, contactService) {
 
-        $rootScope.pageTitle = 'contact';
+            $rootScope.pageTitle = 'contact';
 
-        /**
-         * [pageLoad description]
-         * @return {[type]} [description]
-         */
-        self.pageLoad = function() {
-            contactService.getContacts().success(function(response) {
-                $scope.contacts = response.data;
-            });
-        };
+            /**
+             * [pageLoad description]
+             * @return {[type]} [description]
+             */
+            $scope.pageLoad = function() {
+                contactService.getContacts().success(function(response) {
+                    $scope.contacts = response.data;
+                });
+            };
 
-        self.pageLoad();
-    };
-
-    return ['$scope', '$rootScope', 'ContactService', contactController];
+            $scope.pageLoad();
+        }
+    ]);
 });

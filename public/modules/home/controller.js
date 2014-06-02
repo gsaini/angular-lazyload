@@ -1,6 +1,9 @@
 define([
-    'angular'
-], function(angular) {
+    'angular',
+    './module',
+    './service',
+    'common/services/bootstrap',
+], function(angular, lazyModule, service, modalService) {
     'use strict';
 
     /**
@@ -9,31 +12,31 @@ define([
      * @param  {[type]} homeService [description]
      * @return {[type]}             [description]
      */
-    var homeController = function($scope, $modal, $rootScope, homeService, modalService) {
-        var self = this;
+    lazyModule.controller('HomeController', ['$scope', '$modal', '$rootScope', 'HomeService', 'ModalService',
+        function($scope, $modal, $rootScope, homeService, modalService) {
+            var self = this;
 
-        $rootScope.pageTitle = 'home';
+            $rootScope.pageTitle = 'home';
 
-        /**
-         * [pageLoad description]
-         * @return {[type]} [description]
-         */
-        self.pageLoad = function() {
-            homeService.getData().success(function(response) {
-                $scope.awesomeThings = response.data;
-            });
-        };
+            /**
+             * [pageLoad description]
+             * @return {[type]} [description]
+             */
+            self.pageLoad = function() {
+                homeService.getData().success(function(response) {
+                    $scope.awesomeThings = response.data;
+                });
+            };
 
-        /**
-         * [modal description]
-         * @return {[type]} [description]
-         */
-        $scope.modal = function() {
-            modalService.showStatusModal('Bootstrap', '$modal is a service to quickly create AngularJS-powered modal windows. Creating custom modals is straightforward: create a partial view, its controller and reference them when using the service.');
-        };
+            /**
+             * [modal description]
+             * @return {[type]} [description]
+             */
+            $scope.modal = function() {
+                modalService.showStatusModal('Bootstrap', '$modal is a service to quickly create AngularJS-powered modal windows. Creating custom modals is straightforward: create a partial view, its controller and reference them when using the service.');
+            };
 
-        self.pageLoad();
-    };
-
-    return ['$scope', '$modal', '$rootScope', 'HomeService', 'ModalService', homeController];
+            self.pageLoad();
+        }
+    ]);
 });

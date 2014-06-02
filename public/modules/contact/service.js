@@ -1,6 +1,7 @@
 define([
-    'angular'
-], function(angular) {
+    'angular',
+    './module',
+], function(angular, contactModule) {
     'use strict';
 
     /**
@@ -8,17 +9,19 @@ define([
      * @param  {[type]} $http [description]
      * @return {[type]}       [description]
      */
-    var contactService = function($http) {
-        return {
+    contactModule.service('ContactService', ['$http',
+        function($http) {
+
+            var self = this;
+
             /**
              * [getContacts description]
              * @return {[type]} [description]
              */
-            getContacts: function() {
+            self.getContacts = function() {
                 return $http.get('data/contacts.json');
-            }
-        };
-    };
+            };
+        }
+    ]);
 
-    return ['$http', contactService];
 });

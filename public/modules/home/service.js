@@ -1,6 +1,7 @@
 define([
-    'angular'
-], function(angular) {
+    'angular',
+    './module'
+], function(angular, lazyModule) {
     'use strict';
 
     /**
@@ -8,17 +9,18 @@ define([
      * @param  {[type]} $http [description]
      * @return {[type]}       [description]
      */
-    var homeService = function($http) {
-        return {
+    lazyModule.service('HomeService', ['$http',
+        function($http) {
+            var self = this;
+
             /**
              * [getData description]
              * @return {[type]} [description]
              */
-            getData: function() {
+            self.getData = function() {
                 return $http.get('data/home.json');
-            }
-        };
-    };
+            };
+        }
+    ]);
 
-    return ['$http', homeService];
 });
