@@ -27,6 +27,7 @@ define([
             // Now set up the states
             $stateProvider.state('app', {
                 url: "",
+                abstract: true,
                 views: {
                     header: {
                         templateUrl: "modules/common/partials/header.tpl.html"
@@ -98,6 +99,12 @@ define([
                     ]
                 }
             });
+        }
+    ]);
+
+    app.run(['$state',
+        function($state) {
+            $state.go('app.home');
         }
     ]);
 
