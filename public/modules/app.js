@@ -42,9 +42,29 @@ define([
                 resolve: {
                     deps: ['$ocLazyLoad',
                         function($ocLazyLoad) {
+
+                            // will create a common function to load the js deps.
                             return $ocLazyLoad.load({
                                 name: 'home',
                                 files: ['home/module', 'home/controller']
+                            });
+                        }
+                    ]
+                }
+            }).state('app.home.content', {
+                url: "/content",
+                views: {
+                    'home-content': {
+                        templateUrl: "modules/home/content/content.tpl.html",
+                        controller: 'ContentController'
+                    }
+                },
+                resolve: {
+                    deps: ['$ocLazyLoad',
+                        function($ocLazyLoad) {
+                            return $ocLazyLoad.load({
+                                name: 'home',
+                                files: ['home/content/controller']
                             });
                         }
                     ]

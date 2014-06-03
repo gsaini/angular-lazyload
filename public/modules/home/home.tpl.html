@@ -4,15 +4,10 @@
     <img src="images/yeoman.png" alt="I'm Yeoman"><br>
     Always a pleasure scaffolding your apps.
   </p>
-  <p><a class="btn btn-lg btn-success" href ng-click="modal()">Splendid!</a></p>
+  <p><a class="btn btn-lg btn-success" href ng-click="loadAwesomeThings()">Splendid!</a></p>
 </div>
 
-<div class="row marketing" ng-repeat="thing in awesomeThings">
-  <h4>{{thing.header}}</h4>
-  <p>
-    {{thing.message}}
-  </p>
-</div>
+<div ui-view="home-content"></div>
 
 <div class="footer">
   <p>♥ from the Yeoman team</p>
