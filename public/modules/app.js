@@ -25,9 +25,19 @@ define([
             $urlRouterProvider.otherwise("/home");
             //
             // Now set up the states
-            $stateProvider.state('home', {
+            $stateProvider.state('app', {
+                url: "",
+                views: {
+                    header: {
+                        templateUrl: "modules/common/partials/header.tpl.html"
+                    },
+                    '': {
+                        template: "<div ui-view></div>"
+                    }
+                }
+            }).state('app.home', {
                 url: "/home",
-                templateUrl: "modules/home/home.html",
+                templateUrl: "modules/home/home.tpl.html",
                 controller: 'HomeController',
                 resolve: {
                     deps: ['$ocLazyLoad',
@@ -39,9 +49,9 @@ define([
                         }
                     ]
                 }
-            }).state('about', {
+            }).state('app.about', {
                 url: "/about",
-                templateUrl: "modules/about/about.html",
+                templateUrl: "modules/about/about.tpl.html",
                 controller: 'AboutController',
                 resolve: {
                     deps: ['$ocLazyLoad',
@@ -53,9 +63,9 @@ define([
                         }
                     ]
                 }
-            }).state('contact', {
+            }).state('app.contact', {
                 url: "/contact",
-                templateUrl: "modules/contact/contact.html",
+                templateUrl: "modules/contact/contact.tpl.html",
                 controller: 'ContactController',
                 resolve: {
                     deps: ['$ocLazyLoad',
